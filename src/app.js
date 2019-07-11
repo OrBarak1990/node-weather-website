@@ -1,11 +1,11 @@
 const path = require('path')
 const express = require('express')
-const session = require('express-session')
 const hbs = require('hbs')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 const app = express()
+const port = process.env.PORT || 3000
 
 // Define paths for Express config
 const publicDirPath = path.join(__dirname, '../public')
@@ -19,15 +19,6 @@ hbs.registerPartials(partialsPath)
 
 // Setup static directory to serve
 app.use(express.static(publicDirPath))
-app.use(session({ secret: 'keyboard cat', cookie: {maxAge:269999999999}}));
-
-client.on('connect', function() {
-    console.log('Redis client connected');
-});
-
-client.on('error', function (err) {
-    console.log('Something went wrong ' + err);
-});
 
 app.get('', (req, res) => {
     res.render('index',{
@@ -110,6 +101,7 @@ app.get('*', (req, res) =>{
     })
 })
 
-app.listen(3000, () =>{
-    console.log('Server is up on port 3000.')
+app.listen(port, () =>{
+    console.log('Server is up on port ' +  port)
 })
+
