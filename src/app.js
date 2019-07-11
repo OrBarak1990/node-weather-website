@@ -31,7 +31,6 @@ app.get('/about', (req, res) => {
     res.render('about', {
         title: 'About Me',
         name: 'Or Barak',
-        session: req.session.id         
     })
 })
 
