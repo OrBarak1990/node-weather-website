@@ -59,8 +59,6 @@ app.get('/weather', (req, res) =>{
                 return res.send({ error })
             }
             
-            client.mset("forecast", forcastData, "location", location)
-
             res.send({
                 forecast: forcastData,
                 location,
